@@ -3,10 +3,11 @@ import styled from "styled-components";
 export const Input = styled.input`
   width: 100%;
   box-sizing: border-box;
-  padding: 1em;
+  padding: 5px;
   font-size: 1.2em;
   border: 1px solid ${(props) => props.theme.primary.background};
   border-radius: 5px;
+  margin-bottom: ${(props) => props.marginBottom};
   &:focus {
     border: 1px solid ${(props) => props.theme.global.active};
     outline: none;
