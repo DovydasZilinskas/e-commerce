@@ -7,7 +7,7 @@ export const Section = styled.section`
 `;
 
 export const Wrapper = styled.section`
-  max-width: 768px;
+  max-width: ${(props) => props.theme.webWidth};
   padding: 1em 2em;
   margin: 0 auto;
 `;
