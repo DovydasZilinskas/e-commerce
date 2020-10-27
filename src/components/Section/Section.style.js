@@ -5,6 +5,7 @@ export const Section = styled.section`
   max-width: ${(props) =>
     props.maxWidth === "max" ? "100%" : props.theme.webWidth};
   margin: 0 auto;
+  text-align: ${(props) => props.align};
 `;
 
 export const Wrapper = styled.section`
