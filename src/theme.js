@@ -1,4 +1,5 @@
 const theme = {
+  webWidth: "768px",
   primary: {
     background: "#555",
     color: "#ffffff",
