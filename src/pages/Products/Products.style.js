@@ -22,6 +22,7 @@ export const Table = styled.table`
 `;
 
 export const Error = styled.div`
+  margin-top: 10px;
   background-color: orange;
   font-size: 1.4em;
   padding: 10px;

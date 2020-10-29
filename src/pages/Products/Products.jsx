@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Section, Button } from "../../components";
+import { Section, Button, Loading } from "../../components";
 import { LocationContext } from "../../context/location.context";
 import { useHistory, Link } from "react-router-dom";
-import * as S from "./About.style";
+import * as S from "./Products.style";
 
 function About() {
   const location = useContext(LocationContext);
@@ -32,10 +32,11 @@ function About() {
         </S.FlexBox>
       </Section>
       <Section>
-        <h2>
+        {/* <h2>
           {location.state &&
             location.state.charAt(0).toUpperCase() + location.state.slice(1)}
-        </h2>
+        </h2> */}
+
         <S.Table>
           <thead>
             <tr>
@@ -55,6 +56,13 @@ function About() {
               ))}
           </tbody>
         </S.Table>
+        {!products ? (
+          <Loading />
+        ) : !products || products.length === 0 ? (
+          <S.Error>Data not found</S.Error>
+        ) : (
+          ""
+        )}
       </Section>
     </>
   );

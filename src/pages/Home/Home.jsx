@@ -1,16 +1,24 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { InputField, Section, Button } from "../../components";
-import * as S from "./Home.style";
 import { useHistory } from "react-router-dom";
+import * as S from "./Home.style";
 import { LocationContext } from "../../context/location.context";
 
 function Home() {
   const location = useContext(LocationContext);
-  const [postCode, setPostCode] = useState();
+  const [city, setCity] = useState();
+  const [cities, setCities] = useState([]);
   const [error, setError] = useState(false);
   const history = useHistory();
 
-  useEffect(() => setPostCode(location.state), [location.state]);
+  useEffect(() => {
+    fetch(`http://127.0.0.1:8080/cities`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCities(data);
+      })
+      .catch((err) => alert(err.message + " Check your connection."));
+  }, []);
 
   return (
     <>
@@ -19,30 +27,24 @@ function Home() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (postCode) {
+            if (city) {
               setError(false);
-              location.setState(postCode);
-              history.push("/about");
+              location.setState(city);
+              history.push("/products");
             } else {
               setError(true);
             }
           }}
         >
-          {error && (
-            <S.Error>
-              Post Code is incorrect. Please check and try again.
-            </S.Error>
+          {error && <S.Error>Please select a city.</S.Error>}
+          {cities && (
+            <InputField
+              type="dropdown"
+              arr={cities}
+              handleChange={(e) => setCity(e.target.value)}
+            />
           )}
 
-          <InputField
-            type="dropdown"
-            arr={[
-              { city: "Kaunas" },
-              { city: "Vilnius" },
-              { city: "Siauliai" },
-            ]}
-            handleChange={(e) => setPostCode(e.target.value)}
-          />
           <S.InputBlock>
             <Button type="submit" color="primary">
               Next

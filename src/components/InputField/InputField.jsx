@@ -35,7 +35,7 @@ function InputField({
             Select
           </option>
           {arr.map((e) => (
-            <option value={e.city} key={e.city}>
+            <option value={e.value} key={e.id}>
               {e.city}
             </option>
           ))}

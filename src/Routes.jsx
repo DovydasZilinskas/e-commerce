@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Loading } from "./components";
 
 const HomeLazy = lazy(() => import("./pages/Home/Home"));
-const AboutLazy = lazy(() => import("./pages/About/About"));
+const ProductsLazy = lazy(() => import("./pages/Products/Products"));
 
 function Routes() {
   return (
@@ -12,7 +12,7 @@ function Routes() {
       <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/" component={HomeLazy} />
-          <Route exact path="/about" component={AboutLazy} />
+          <Route exact path="/products" component={ProductsLazy} />
         </Switch>
       </Suspense>
     </Router>
