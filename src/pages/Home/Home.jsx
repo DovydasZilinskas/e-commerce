@@ -2,13 +2,14 @@ import React, { useEffect, useState, useContext } from "react";
 import { InputField, Section, Button } from "../../components";
 import { useHistory } from "react-router-dom";
 import * as S from "./Home.style";
-import { LocationContext } from "../../context/location.context";
+import { UserContext } from "../../context/user.context";
 
 function Home() {
-  const location = useContext(LocationContext);
+  const user = useContext(UserContext);
   const [city, setCity] = useState();
   const [cities, setCities] = useState([]);
   const [error, setError] = useState(false);
+  const [name, setName] = useState();
   const history = useHistory();
 
   useEffect(() => {
@@ -29,13 +30,18 @@ function Home() {
             e.preventDefault();
             if (city) {
               setError(false);
-              location.setState(city);
+              user.setState({ city, name });
               history.push("/products");
             } else {
               setError(true);
             }
           }}
         >
+          <InputField
+            type="text"
+            handleChange={(e) => setName(e.target.value)}
+          />
+
           {error && <S.Error>Please select a city.</S.Error>}
           {cities && (
             <InputField

@@ -1,42 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Section, Button, Loading } from "../../components";
-import { LocationContext } from "../../context/location.context";
+import { UserContext } from "../../context/user.context";
 import { useHistory, Link } from "react-router-dom";
 import * as S from "./Products.style";
 
 function About() {
-  const location = useContext(LocationContext);
+  const user = useContext(UserContext);
   const history = useHistory();
   const [products, setProducts] = useState();
 
-  if (!location.state) {
+  if (!user.state) {
     history.push("/");
   }
 
   useEffect(() => {
-    if (location.state) {
-      fetch(`http://127.0.0.1:8080/${location.state}`)
+    if (user.state && user.state.city) {
+      fetch(`http://127.0.0.1:8080/${user.state.city}`)
         .then((res) => res.json())
         .then((data) => setProducts(data));
     }
-  }, [location.state]);
+  }, [user.state]);
 
   return (
     <>
       <Section>
         <S.FlexBox>
-          <h1>Product List</h1>
+          <h1>
+            Hello {user.state && user.state.name}, this is your product list.
+          </h1>
           <Link to="/">
             <Button>Go Back</Button>
           </Link>
         </S.FlexBox>
       </Section>
       <Section>
-        {/* <h2>
-          {location.state &&
-            location.state.charAt(0).toUpperCase() + location.state.slice(1)}
-        </h2> */}
-
         <S.Table>
           <thead>
             <tr>
