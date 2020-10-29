@@ -1,11 +1,19 @@
 import React from "react";
 import * as S from "./InputField.style";
 
-function InputField({ placeholder, type, handleChange }) {
+function InputField({
+  value,
+  placeholder,
+  type,
+  handleChange,
+  arr,
+  optionState,
+}) {
   switch (type) {
     case "number":
       return (
         <S.Input
+          value={value}
           type="number"
           step="0.1"
           placeholder={placeholder}
@@ -15,13 +23,28 @@ function InputField({ placeholder, type, handleChange }) {
     case "longtext":
       return (
         <S.TextArea
+          value={value}
           placeholder={placeholder}
           onChange={handleChange}
         ></S.TextArea>
       );
+    case "dropdown":
+      return (
+        <S.Dropdown onChange={handleChange} defaultValue>
+          <option disabled value>
+            Select
+          </option>
+          {arr.map((e) => (
+            <option value={e.city} key={e.city}>
+              {e.city}
+            </option>
+          ))}
+        </S.Dropdown>
+      );
     default:
       return (
         <S.Input
+          value={value}
           type="text"
           placeholder={placeholder}
           onChange={handleChange}
