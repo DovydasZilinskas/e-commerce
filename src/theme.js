@@ -12,6 +12,7 @@ const theme = {
   },
   global: {
     active: "#bbbbbb",
+    background: "#999",
   },
 };
 
