@@ -10,6 +10,7 @@ function Home() {
   const [cities, setCities] = useState([]);
   const [error, setError] = useState(false);
   const [name, setName] = useState();
+  const [gender, setGender] = useState();
   const history = useHistory();
 
   useEffect(() => {
@@ -30,7 +31,7 @@ function Home() {
             e.preventDefault();
             if (city) {
               setError(false);
-              user.setState({ city, name });
+              user.setState({ city, name, gender });
               history.push("/products");
             } else {
               setError(true);
@@ -39,14 +40,19 @@ function Home() {
         >
           <InputField
             type="text"
+            placeholder="Name"
             handleChange={(e) => setName(e.target.value)}
           />
+          <div onChange={(e) => setGender(e.target.value)}>
+            <InputField type="radio" value="Mr" name="gender" /> Male
+            <InputField type="radio" value="Ms" name="gender" /> Female
+          </div>
 
           {error && <S.Error>Please select a city.</S.Error>}
           {cities && (
             <InputField
               type="dropdown"
-              arr={cities}
+              cities={cities}
               handleChange={(e) => setCity(e.target.value)}
             />
           )}

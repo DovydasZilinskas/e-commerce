@@ -6,11 +6,10 @@ export const InputBlock = styled.div`
 `;
 
 export const Error = styled.div`
-  background-color: orange;
+  background-color: ${(props) => props.theme.global.background};
   font-size: 1.4em;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 5px;
+  border-radius: 10px 10px 0 0;
   text-align: center;
   border: 1px solid gray;
-  margin-bottom: 1em;
 `;
