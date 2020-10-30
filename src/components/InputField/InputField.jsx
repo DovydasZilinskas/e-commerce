@@ -1,14 +1,7 @@
 import React from "react";
 import * as S from "./InputField.style";
 
-function InputField({
-  value,
-  placeholder,
-  type,
-  handleChange,
-  arr,
-  optionState,
-}) {
+function InputField({ value, placeholder, type, handleChange, cities, name }) {
   switch (type) {
     case "number":
       return (
@@ -28,13 +21,22 @@ function InputField({
           onChange={handleChange}
         ></S.TextArea>
       );
+    case "radio":
+      return (
+        <S.Radio
+          type="radio"
+          value={value}
+          name={name}
+          onChange={handleChange}
+        />
+      );
     case "dropdown":
       return (
         <S.Dropdown onChange={handleChange} defaultValue>
           <option disabled value>
             Select
           </option>
-          {arr.map((e) => (
+          {cities.map((e) => (
             <option value={e.value} key={e.id}>
               {e.city}
             </option>
@@ -46,6 +48,7 @@ function InputField({
         <S.Input
           value={value}
           type="text"
+          maxLength="15"
           placeholder={placeholder}
           onChange={handleChange}
         />

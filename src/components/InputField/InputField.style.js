@@ -30,12 +30,19 @@ export const TextArea = styled.textarea`
 export const Dropdown = styled.select`
   width: 100%;
   box-sizing: border-box;
-  padding: 1em;
+  height: 34px;
+  background-color: white;
+  outline: 0;
   font-size: 1.2em;
+  color: darkgray;
   border: 1px solid ${(props) => props.theme.primary.background};
-  border-radius: 5px;
+  border-radius: 0;
   &:focus {
     border: 1px solid ${(props) => props.theme.global.active};
-    outline: none;
+    color: black;
   }
+`;
+
+export const Radio = styled.input`
+  margin: 10px;
 `;
