@@ -2,11 +2,7 @@ import React from "react";
 import * as S from "./Loading.style";
 
 function Loading() {
-  return (
-    <S.Wrapper>
-      <S.Loader />
-    </S.Wrapper>
-  );
+  return <S.Loader />;
 }
 
 export default Loading;

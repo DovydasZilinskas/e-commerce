@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-`;
-
 export const Loader = styled.div`
      color: black;
   font-size: 20px;
